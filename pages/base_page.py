@@ -7,7 +7,7 @@ class BasePage:
         self.driver = driver
 
     def click_to_element(self, locator):
-        WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(locator))
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator))
         self.driver.find_element(*locator).click()
 
     def find_element_with_waiting(self, locator):
@@ -18,8 +18,9 @@ class BasePage:
         return self.find_element_with_waiting(locator).text
 
     def scroll_to_element(self, locator):
-        element = self.driver.find_element(*locator)
-        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+        WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(locator))
+        self.driver.execute_script("arguments[0].scrollIntoView();", self.driver.find_element(*locator))
+        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(locator))
 
     def insert_text_to_element(self, locator, text):
         self.find_element_with_waiting(locator).send_keys(text)

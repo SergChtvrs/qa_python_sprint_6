@@ -13,3 +13,7 @@ class AboutRentData:
     period = ['сутки', 'двое суток', 'трое суток', 'четверо суток', 'пятеро суток', 'шестеро суток', 'семеро суток']
     colour = ['black', 'grey']
     comment = 'Везите быстрее!'
+
+
+class Consts:
+    link = "https://qa-scooter.praktikum-services.ru/"
